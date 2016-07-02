@@ -19,4 +19,17 @@ class Light extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $appends = array('value');
+    protected $value;
+
+    public function getValueAttribute()
+    {
+        return $this->value;
+    }
+
+    public function setValueAttribute($value)
+    {
+        $this->value = $value;
+    }
 }

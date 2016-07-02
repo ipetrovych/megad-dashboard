@@ -13,14 +13,9 @@
 
 use App\Models\Light;
 
-Route::get('/', function () {
-    $lights =  Light::orderBy('floor', 'asc')->get();
+Route::get('/', 'DashboardController@index');
 
-    return view('index', [
-        'lights' => $lights
-    ]);
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::resource('megad', 'MegaDController');
 });
-
-//Route::group(['middleware' => ['web']], function () {
-//    Route::resource('dashboard', 'DashboardController');
-//});

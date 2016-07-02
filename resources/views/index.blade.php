@@ -47,7 +47,7 @@
                     @foreach ($lights as $light)
 
                         @if ($light->floor == 1)
-                            <div class="switch" data-id="{{ $light->id }}" style="top: {{ $light->top }}px;left: {{ $light->left }}px;"></div>
+                            <div class="switch {{ $light->value == 1 ? 'on' : '' }}" data-id="{{ $light->id }}" style="top: {{ $light->top }}px;left: {{ $light->left }}px;"></div>
                         @endif
                     @endforeach
                 </div>
