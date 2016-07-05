@@ -17,5 +17,7 @@ Route::get('/', 'DashboardController@index');
 
 Route::group(array('prefix' => 'api/v1'), function()
 {
-    Route::resource('megad', 'MegaDController');
+    Route::get('/', 'MegaDController@index')->name('index');
+    Route::get('/emulate', 'MegaDController@emulate')->name('emulate');
+    Route::get('/toggleLight/{id}', 'MegaDController@toggleLight')->name('toggleLight');
 });

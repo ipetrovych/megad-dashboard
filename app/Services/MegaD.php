@@ -2,11 +2,14 @@
 
 namespace App\Services;
 
+use Exception;
+
 class MegaD
 {
     public function getPortsState()
     {
         $result = $this->run(['cmd' => 'all']);
+
         $results = explode(';', $result);
 
         foreach ($results as $port => $value)
@@ -64,10 +67,16 @@ class MegaD
     private function run($parameters)
     {
         $parameters = http_build_query($parameters);
-
         $base_url = config('megad.url');
-        $url = sprintf("%s?%s", $base_url, $$parameters);
+        $url = sprintf("%s?%s", $base_url, $parameters);
 
-        return file_get_contents($url);
+        try
+        {
+            return file_get_contents($url);
+        }
+        catch(Exception $e)
+        {
+            return null;
+        }
     }
 }

@@ -16,7 +16,10 @@ class DashboardController extends Controller
         $data = $megaD->getPortsState();
 
         foreach ($lights as $light) {
-            $light->value = $data[$light->port];
+            if ($light->port != null)
+            {
+                $light->value = $data[$light->port];
+            }
         }
 
         return view('index', [
